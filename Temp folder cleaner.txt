@@ -1,0 +1,29 @@
+REM Title: Enhanced System Sanitizer
+REM Target: Windows (Requires Admin)
+DELAY 1000
+GUI r
+DELAY 500
+STRING powershell -NoProfile -ExecutionPolicy Bypass
+CTRL-SHIFT ENTER
+DELAY 2500
+LEFTARROW
+ENTER
+DELAY 1000
+
+REM 1. Clean User Temp
+STRING Remove-Item -Path "$env:TEMP\*" -Recurse -Force -ErrorAction SilentlyContinue; 
+ENTER
+DELAY 200
+
+REM 2. Clean System Temp (Windows/Temp)
+STRING Remove-Item -Path "C:\Windows\Temp\*" -Recurse -Force -ErrorAction SilentlyContinue; 
+ENTER
+DELAY 200
+
+REM 3. Empty Recycle Bin without confirmation
+STRING Clear-RecycleBin -Force -ErrorAction SilentlyContinue;
+ENTER
+DELAY 500
+
+STRING echo "Clean Complete!"
+ENTER
