@@ -1,0 +1,13 @@
+REM Title: System Info Collector (Universal)
+DELAY 1000
+GUI r
+DELAY 500
+STRING powershell -NoProfile -ExecutionPolicy Bypass
+CTRL-SHIFT ENTER
+DELAY 2000
+LEFTARROW
+ENTER
+DELAY 1000
+REM Using $env:TEMP ensures this works on all Windows machines
+STRING systeminfo > $env:TEMP\sysinfo.txt; notepad $env:TEMP\sysinfo.txt
+ENTER
